@@ -1,17 +1,8 @@
 import React from 'react';
-import * as styles from '../style/styles';
-import {
-	Text,
-	HStack,
-	StackDivider,
-	Heading,
-	VStack,
-	Stack
-} from '@chakra-ui/react';
+import { Text, HStack, VStack } from '@chakra-ui/react';
 import { BiHome, BiBookAlt } from 'react-icons/bi';
 import { BsPerson } from 'react-icons/bs';
 import { NavLink } from 'react-router-dom';
-import { css } from '@emotion/react';
 
 const Footer = () => {
 	return (

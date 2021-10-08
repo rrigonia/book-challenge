@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, InputGroup, InputLeftElement, Input } from '@chakra-ui/react';
+import { InputGroup, InputLeftElement, Input } from '@chakra-ui/react';
 import { RiSearch2Line } from 'react-icons/ri';
 
 const HeaderInput = ({ props }) => {

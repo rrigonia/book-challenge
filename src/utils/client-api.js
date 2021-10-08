@@ -1,7 +1,9 @@
 const baseUrl = 'https://www.googleapis.com/books/v1/volumes?q=';
+const max = 20;
 
 const client = async (
 	endpoint,
+	startIndex = 0,
 	{ data, headers: customHeaders, ...customConfig } = {}
 ) => {
 	const config = {
@@ -13,7 +15,10 @@ const client = async (
 		...customConfig
 	};
 
-	return fetch(`${baseUrl}${endpoint}`, config).then(async res => {
+	return fetch(
+		`${baseUrl}${endpoint}&printType=books&maxResults=${max}&startIndex=${startIndex}`,
+		config
+	).then(async res => {
 		// if(res.status === '404'){
 
 		// }

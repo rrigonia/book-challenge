@@ -10,20 +10,31 @@ import { ErrorBoundary } from 'react-error-boundary';
 import { BrowserRouter as Router } from 'react-router-dom';
 import theme from './theme';
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+	defaultOptions: {
+		queries: {
+			refetchOnWindowFocus: false,
+			useErrorBoundary: true,
+			staleTime: 9999999
+		},
+		mutations: {
+			useErrorBoundary: true
+		}
+	}
+});
 
 ReactDOM.render(
-	<ErrorBoundary FallbackComponent={<div>Error </div>}>
-		<ChakraProvider theme={theme}>
-			<QueryClientProvider client={queryClient}>
-				<Router>
-					<ColorModeScript initialColorMode='light' />
+	<ChakraProvider theme={theme}>
+		<QueryClientProvider client={queryClient}>
+			<Router>
+				<ColorModeScript initialColorMode='light' />
+				<ErrorBoundary FallbackComponent={<div>Error </div>}>
 					<App />
-				</Router>
-				<ReactQueryDevtools initialIsOpen={false} />
-			</QueryClientProvider>
-		</ChakraProvider>
-	</ErrorBoundary>,
+				</ErrorBoundary>
+			</Router>
+			<ReactQueryDevtools initialIsOpen={false} />
+		</QueryClientProvider>
+	</ChakraProvider>,
 	document.getElementById('root')
 );
 

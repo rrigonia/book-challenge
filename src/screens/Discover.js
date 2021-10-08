@@ -5,14 +5,16 @@ import {
 	InputLeftElement,
 	Input,
 	Spinner,
-	Text
+	Text,
+	Button,
+	Container
 } from '@chakra-ui/react';
 import { FaSearch, FaTimes } from 'react-icons/fa';
 import Layout from '../components/Layout';
 import Footer from '../components/Footer';
 import { HStack } from '@chakra-ui/react';
 import ShowBookCard from '../components/ShowBookCard';
-import { useQuery } from 'react-query';
+import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { client } from '../utils/client-api';
 import bookPlaceholder from '../assets/book-placeholder.svg';
 
@@ -33,28 +35,36 @@ const loadingBooks = Array.from({ length: 10 }).map((book, idx) => ({
 	...loadingBook
 }));
 
-const Discover = () => {
-	const [ queried, setQueried ] = React.useState(false);
-	const [ query, setQuery ] = React.useState('');
-
+const Discover = ({query, setQuery, queried, setQueried}) => {
+	
+	const queryClient = useQueryClient()
 	const { data, isLoading, isError, error } = useQuery(
 		[ 'books', query ],
 		() => client(query),
 		{
-			onSuccess: () => {},
-			enabled: queried
+			
+			enabled: queried,
+			initialData: () => queryClient.getQueryData(query)
 		}
 	);
 
-	const books = data?.items ?? loadingBooks
+	const {mutate, isLoading: loadingMoreBooks} = useMutation(() => 
+		client(query, books.length+3)
+			.then(res => {
+				const uniqueItems = res.items.filter(it => !data?.items?.some((crt, idx, arr) => crt.id === it.id) );
+				return queryClient.setQueryData(
+					[`books`, query], {...res, items: [...data?.items, ...uniqueItems]}
+				)
+			}
+		)
+	 )
 
+	const books = data?.items ?? loadingBooks
 	const handleSubmit = e => {
 		e.preventDefault();
-		setQuery(e.target.elements.search.value);
-		setQueried(true);
+		setQuery(e.target.elements.search.value.replace(' ', '&'));
+		setQueried(true)
 	};
-
-	console.log(books);
 
 	return (
 		<Layout spacing='40px'>
@@ -95,7 +105,8 @@ const Discover = () => {
 					pb={10}
 				>
 					{books.map(book => <ShowBookCard key={book.id} {...book} />)}
-				</HStack> : <Text> Try to search a book...</Text> }
+					<Container py='20px' centerContent w='full'><Button colorScheme='gray' width='50%' variant='solid' onClick={mutate}> {loadingMoreBooks ? <Spinner /> :  "Load More"} </Button></Container>
+				</HStack> : isError ? <Text> {error.message}</Text> : <Text> Try to search a book...</Text> }
 				
 			</Flex>
 			<Footer />

@@ -6,24 +6,32 @@ import {
 	StackDivider,
 	Heading,
 	VStack,
-	Stack
+	Stack,Container, Spinner
 } from '@chakra-ui/react';
+import { FaTimes } from 'react-icons/fa';
 import { FiBookOpen, FiShare } from 'react-icons/fi';
 import { BiHeadphone } from 'react-icons/bi';
 
-export const BookInfo = ({ title, subTitle, author, messages, ...props }) => {
+export const BookInfo = ({ book,showError, error,isLoading, ...props }) => {
+	const {title, subTitle, authors,description} = book;
 	return (
 		<React.Fragment>
 			<Stack mt='67px' {...props} w='full'>
 				<Heading fontSize='24px' fontWeight='400'>
-					<span style={{ fontWeight: '700' }}>{title}</span> : {subTitle}
+					<span style={{ fontWeight: '700' }}>{title}</span> {subTitle ? `:${subTitle}` : null}
 				</Heading>
 				<Text
 					h='19px'
 					textColor={styles.colors.text.seccondary}
 					letterSpacing='0.670588px'
 				>
-					{author}
+					{authors?.map((author, idx) => (
+						<span key={author}>
+							{author}
+							{idx < authors.length - 1 && ', '}
+						</span>
+					))}
+					{!authors ? 'Unknown' : null}
 				</Text>
 			</Stack>
 			<VStack
@@ -40,7 +48,8 @@ export const BookInfo = ({ title, subTitle, author, messages, ...props }) => {
 				overflow='auto'
 				{...props}
 			>
-				{messages.map(m => <Text>{m}</Text>)}
+				{isLoading ? <Container centerContent><Spinner size='md'/></Container> : showError ? <Text><FaTimes color='red' /> {error.message}</Text> : <Text>{description}</Text>}
+
 			</VStack>
 		</React.Fragment>
 	);

@@ -1,7 +1,6 @@
 import React from 'react';
-import { Flex, Box, Heading, Text } from '@chakra-ui/react';
+import { Heading, Text } from '@chakra-ui/react';
 import * as styles from '../style/styles';
-import HomeCard from '../components/HomeCard';
 import HeaderInput from '../components/HeaderInput';
 import Layout from '../components/Layout';
 import Footer from '../components/Footer';
