@@ -12,7 +12,6 @@ const ShowBook = () => {
 	const { bookId: id } = useParams();
 	const { data: book, isLoading, isError, error, image } = useBook(id);
 	const history = useHistory();
-	console.log(history);
 
 	return (
 		<Layout spacing={null}>

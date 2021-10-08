@@ -9,8 +9,10 @@ import { Oval } from '../components/lib';
 import bgImage from '../assets/oval-5.png';
 import { useBooks } from '../utils/books';
 
+const randomWord = 'Rock and Roll';
+
 const Home = () => {
-	const { data: books, isLoading } = useBooks('games');
+	const { data: books, isLoading } = useBooks(randomWord);
 	return (
 		<Layout px='20px'>
 			<HeaderInput />
@@ -51,7 +53,12 @@ const Home = () => {
 			/>
 			<HomeSection title='Discover new book' link={<Text>More</Text>}>
 				{books.map((book, idx) => (
-					<DiscoverBookCard {...book} loading={isLoading} idx={idx} />
+					<DiscoverBookCard
+						key={book.id}
+						{...book}
+						loading={isLoading}
+						idx={idx}
+					/>
 				))}
 			</HomeSection>
 			<HomeSection title='Currently Reading' link={<Text>All</Text>}>

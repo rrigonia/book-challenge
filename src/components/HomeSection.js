@@ -49,12 +49,14 @@ const DiscoverBookCard = ({ volumeInfo, loading, id, idx }) => {
 				flexShrink={0}
 				h={isFirst ? `139px` : '128px'}
 				overflow='hidden'
+				alignItems='center'
+				justifyContent='center'
 				px='20px'
 				py='15px'
 			>
-				<Container h='full' centerContent>
+				
 					<Spinner />
-				</Container>
+				
 			</Flex>
 		);
 	} else {
@@ -68,6 +70,9 @@ const DiscoverBookCard = ({ volumeInfo, loading, id, idx }) => {
 				w='272px'
 				flexShrink={0}
 				h={isFirst ? `139px` : '128px'}
+				_hover={{
+					height: '139px'
+				}}
 				overflow='hidden'
 				px='20px'
 				py='15px'
