@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 const ShowBookCard = ({ volumeInfo, id }) => {
 	const { title, authors, imageLinks } = volumeInfo;
 	const image = imageLinks?.thumbnail ?? imageLinks?.smallThumbnail ?? bookPlaceholder;
+
 	return (
 		
 			<VStack maxW='30%' alignItems='flex-start' p={3}>

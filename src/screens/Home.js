@@ -7,8 +7,10 @@ import Layout from '../components/Layout';
 import Footer from '../components/Footer';
 import { Oval } from '../components/lib';
 import bgImage from '../assets/oval-5.png';
+import { useBooks } from '../utils/books';
 
 const Home = () => {
+	const { data: books, isLoading } = useBooks('games');
 	return (
 		<Layout px='20px'>
 			<HeaderInput />
@@ -37,7 +39,7 @@ const Home = () => {
 					background: `url(${bgImage})`
 				}}
 			/>
-			{/* <Oval
+			<Oval
 				style={{
 					width: 127,
 					height: 127,
@@ -46,10 +48,11 @@ const Home = () => {
 					border: 'none',
 					background: `url(${bgImage})`
 				}}
-			/> */}
+			/>
 			<HomeSection title='Discover new book' link={<Text>More</Text>}>
-				<DiscoverBookCard />
-				<DiscoverBookCard />
+				{books.map((book, idx) => (
+					<DiscoverBookCard {...book} loading={isLoading} idx={idx} />
+				))}
 			</HomeSection>
 			<HomeSection title='Currently Reading' link={<Text>All</Text>}>
 				<Flex

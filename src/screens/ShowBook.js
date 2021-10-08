@@ -1,22 +1,22 @@
 import React from 'react';
-import { Flex, Image } from '@chakra-ui/react';
+import { Flex, Image, Text } from '@chakra-ui/react';
 import Layout from '../components/Layout';
 import { BookInfo, BookActions } from '../components/book-info';
 import { useParams } from 'react-router';
-import { Link } from 'react-router-dom';
 import { useBook } from '../utils/books';
-import { BgOvals, Oval } from '../components/lib';
+import { BgOvals } from '../components/lib';
 import { HiArrowNarrowLeft } from 'react-icons/hi';
-import bgImage from '../assets/oval-5.png';
+import { useHistory } from 'react-router';
 
 const ShowBook = () => {
 	const { bookId: id } = useParams();
 	const { data: book, isLoading, isError, error, image } = useBook(id);
-	console.log(book);
+	const history = useHistory();
+	console.log(history);
 
 	return (
 		<Layout spacing={null}>
-			<Link
+			<Text
 				style={{
 					position: 'absolute',
 					width: 7,
@@ -26,10 +26,10 @@ const ShowBook = () => {
 					color: 'black',
 					padding: '8px'
 				}}
-				to='/books'
+				onClick={history.goBack}
 			>
 				<HiArrowNarrowLeft />
-			</Link>
+			</Text>
 			<Flex
 				w='full'
 				justifyContent='center'
