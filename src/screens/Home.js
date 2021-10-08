@@ -8,7 +8,7 @@ import Footer from '../components/Footer';
 
 const Home = () => {
 	return (
-		<Layout>
+		<Layout px='20px'>
 			<HeaderInput />
 			<Heading
 				lineHeight='28,64px'

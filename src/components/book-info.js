@@ -11,10 +11,10 @@ import {
 import { FiBookOpen, FiShare } from 'react-icons/fi';
 import { BiHeadphone } from 'react-icons/bi';
 
-export const BookInfo = ({ title, subTitle, author, messages }) => {
+export const BookInfo = ({ title, subTitle, author, messages, ...props }) => {
 	return (
 		<React.Fragment>
-			<Stack mt='67px'>
+			<Stack mt='67px' {...props} w='full'>
 				<Heading fontSize='24px' fontWeight='400'>
 					<span style={{ fontWeight: '700' }}>{title}</span> : {subTitle}
 				</Heading>
@@ -35,9 +35,10 @@ export const BookInfo = ({ title, subTitle, author, messages }) => {
 				pb='20px'
 				letterSpacing='0.2px'
 				textColor='rgba(49,49,49,0.6)'
-				w='335px'
+				w='full'
 				h='235px'
 				overflow='auto'
+				{...props}
 			>
 				{messages.map(m => <Text>{m}</Text>)}
 			</VStack>

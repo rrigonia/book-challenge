@@ -1,0 +1,34 @@
+import React from 'react';
+import { Flex, Box, Heading, Text } from '@chakra-ui/react';
+import * as styles from '../style/styles';
+import HomeCard from '../components/HomeCard';
+import HeaderInput from '../components/HeaderInput';
+import Layout from '../components/Layout';
+import Footer from '../components/Footer';
+
+const Profile = () => {
+	return (
+		<Layout px='20px'>
+			<HeaderInput />
+			<Heading
+				lineHeight='28,64px'
+				fontSize='24px'
+				fontWeight='normal'
+				alignSelf='flex-start'
+			>
+				Hi,{' '}
+				<Text
+					display='inline'
+					fontWeight='600'
+					textColor={styles.colors.text.seccondary}
+				>
+					Mehmed Al Fatih 👋
+				</Text>
+			</Heading>
+
+			<Footer />
+		</Layout>
+	);
+};
+
+export default Profile;

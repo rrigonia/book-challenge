@@ -10,6 +10,8 @@ import {
 } from '@chakra-ui/react';
 import { BiHome, BiBookAlt } from 'react-icons/bi';
 import { BsPerson } from 'react-icons/bs';
+import { NavLink } from 'react-router-dom';
+import { css } from '@emotion/react';
 
 const Footer = () => {
 	return (
@@ -26,15 +28,21 @@ const Footer = () => {
 			fontWeight='400'
 			color='#CFCBD2'
 		>
-			<VStack spacing={0}>
-				<BiHome size='24px' /> <Text fontWeight='bold'>Home</Text>
-			</VStack>
-			<VStack spacing={0} color='black'>
-				<BiBookAlt size='24px' /> <Text>Books</Text>
-			</VStack>
-			<VStack spacing={0}>
-				<BsPerson size='24px' /> <Text>Profile</Text>
-			</VStack>
+			<NavLink exact activeStyle={{ color: 'black' }} to='/'>
+				<VStack spacing={0}>
+					<BiHome size='24px' /> <Text fontWeight='bold'>Home</Text>
+				</VStack>
+			</NavLink>
+			<NavLink activeStyle={{ color: 'black' }} exact to='/books'>
+				<VStack spacing={0}>
+					<BiBookAlt size='24px' /> <Text>Books</Text>
+				</VStack>
+			</NavLink>
+			<NavLink exact activeStyle={{ color: 'black' }} to='/profile/profileId'>
+				<VStack spacing={0}>
+					<BsPerson size='24px' /> <Text>Profile</Text>
+				</VStack>
+			</NavLink>
 		</HStack>
 	);
 };

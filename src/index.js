@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { ChakraProvider, ColorModeScript } from '@chakra-ui/react';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools';
 import { ErrorBoundary } from 'react-error-boundary';
 import { BrowserRouter as Router } from 'react-router-dom';
 import theme from './theme';
@@ -19,6 +20,7 @@ ReactDOM.render(
 					<ColorModeScript initialColorMode='light' />
 					<App />
 				</Router>
+				<ReactQueryDevtools initialIsOpen={false} />
 			</QueryClientProvider>
 		</ChakraProvider>
 	</ErrorBoundary>,

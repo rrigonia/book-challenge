@@ -6,7 +6,7 @@ const Layout = props => {
 	return (
 		<VStack
 			spacing='30px'
-			px='20px'
+			// px='20px'
 			bg='#F2F2F2'
 			h='100vh'
 			alignItems='center'
