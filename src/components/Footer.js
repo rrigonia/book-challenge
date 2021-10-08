@@ -4,7 +4,7 @@ import { BiHome, BiBookAlt } from 'react-icons/bi';
 import { BsPerson } from 'react-icons/bs';
 import { NavLink } from 'react-router-dom';
 
-const Footer = () => {
+const Footer = props => {
 	return (
 		<HStack
 			w='full'
@@ -18,6 +18,8 @@ const Footer = () => {
 			fontSize='10px'
 			fontWeight='400'
 			color='#CFCBD2'
+			zIndex='5'
+			{...props}
 		>
 			<NavLink exact activeStyle={{ color: 'black' }} to='/'>
 				<VStack spacing={0}>

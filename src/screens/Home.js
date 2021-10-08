@@ -1,10 +1,12 @@
 import React from 'react';
 import { Flex, Box, Heading, Text } from '@chakra-ui/react';
 import * as styles from '../style/styles';
-import HomeCard from '../components/HomeCard';
+import { HomeSection, DiscoverBookCard } from '../components/HomeSection';
 import HeaderInput from '../components/HeaderInput';
 import Layout from '../components/Layout';
 import Footer from '../components/Footer';
+import { Oval } from '../components/lib';
+import bgImage from '../assets/oval-5.png';
 
 const Home = () => {
 	return (
@@ -25,11 +27,31 @@ const Home = () => {
 					Mehmed Al Fatih 👋
 				</Text>
 			</Heading>
-			<HomeCard title='Discover new book' link={<Text>More</Text>}>
-				<Box bg='red.300' w='272px' flexShrink={0} h='139px' />
-				<Box bg='red.300' w='272px' flexShrink={0} h='139px' />
-			</HomeCard>
-			<HomeCard title='Currently Reading' link={<Text>All</Text>}>
+			<Oval
+				style={{
+					width: 127,
+					height: 127,
+					left: '77.4%',
+					top: '18%',
+					border: 'none',
+					background: `url(${bgImage})`
+				}}
+			/>
+			{/* <Oval
+				style={{
+					width: 127,
+					height: 127,
+					left: '7%',
+					top: '24%',
+					border: 'none',
+					background: `url(${bgImage})`
+				}}
+			/> */}
+			<HomeSection title='Discover new book' link={<Text>More</Text>}>
+				<DiscoverBookCard />
+				<DiscoverBookCard />
+			</HomeSection>
+			<HomeSection title='Currently Reading' link={<Text>All</Text>}>
 				<Flex
 					alignItems='center'
 					bg='red.300'
@@ -40,10 +62,10 @@ const Home = () => {
 					<Box ml='19px' w='91px' h='136px' bg='yellow.300' />
 				</Flex>
 				<Box bg='red.300' w='272px' flexShrink={0} h='139px' />
-			</HomeCard>
-			<HomeCard title='Reviews of The Days' link={<Text>All videos</Text>}>
+			</HomeSection>
+			<HomeSection title='Reviews of The Days' link={<Text>All videos</Text>}>
 				<Box bg='red.300' w='335px' flexShrink={0} h='128px' />
-			</HomeCard>
+			</HomeSection>
 			<Footer />
 		</Layout>
 	);

@@ -5,8 +5,9 @@ import { BookInfo, BookActions } from '../components/book-info';
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 import { useBook } from '../utils/books';
-import { BgOvals } from '../components/lib';
+import { BgOvals, Oval } from '../components/lib';
 import { HiArrowNarrowLeft } from 'react-icons/hi';
+import bgImage from '../assets/oval-5.png';
 
 const ShowBook = () => {
 	const { bookId: id } = useParams();
@@ -36,9 +37,10 @@ const ShowBook = () => {
 				borderRadius='0px 0px 100px 0px'
 				bg='#FFF6E5'
 			>
-				<BgOvals />
+				{/* <BgOvals /> */}
 				<Image src={image} maxW='151px' h='234px' mt='84px' zIndex='2' />
 			</Flex>
+			<BgOvals />
 			<BookInfo
 				px='20px'
 				book={book.volumeInfo}

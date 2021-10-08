@@ -1,12 +1,11 @@
 import React from 'react';
-import { Box } from '@chakra-ui/react';
 import bgImage from '../assets/oval-5.png';
 
-const Oval = ({ style, ...props }) => {
+const Oval = ({ style, withImage, ...props }) => {
 	return (
-		<Box
+		<div
 			style={{
-				position: 'absolute',
+				position: 'fixed',
 				width: 24,
 				height: 24,
 				left: 248,
@@ -14,6 +13,7 @@ const Oval = ({ style, ...props }) => {
 				border: '2px solid #4550A7',
 				borderRadius: '100%',
 				zIndex: '0',
+				background: withImage ? `url(${bgImage})` : null,
 				...style
 			}}
 			{...props}
@@ -68,4 +68,4 @@ function BgOvals() {
 	);
 }
 
-export { BgOvals };
+export { BgOvals, Oval };
