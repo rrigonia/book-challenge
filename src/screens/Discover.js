@@ -14,56 +14,20 @@ import Layout from '../components/Layout';
 import Footer from '../components/Footer';
 import { HStack } from '@chakra-ui/react';
 import ShowBookCard from '../components/ShowBookCard';
-import { useMutation, useQuery, useQueryClient } from 'react-query';
-import { client } from '../utils/client-api';
-import bookPlaceholder from '../assets/book-placeholder.svg';
+import { useBooks } from '../utils/books';
 
-const loadingBook = {
-	volumeInfo: {
-		title: 'Loading...',
-		subtitle: 'Loading...',
-		authors: [ 'Loading...' ],
-		averageRating: '...',
-		imageLinks: {
-			thumbnail: bookPlaceholder
-		}
-	}
-};
-
-const loadingBooks = Array.from({ length: 10 }).map((book, idx) => ({
-	id: `loading-book-${idx}`,
-	...loadingBook
-}));
-
-const Discover = ({query, setQuery, queried, setQueried}) => {
-	
-	const queryClient = useQueryClient()
-	const { data, isLoading, isError, error } = useQuery(
-		[ 'books', query ],
-		() => client(query),
-		{
-			
-			enabled: queried,
-			initialData: () => queryClient.getQueryData(query)
-		}
+const Discover = ({ query, setQuery, queried, setQueried }) => {
+	const { data: books, isLoading, isError, error, mutation } = useBooks(
+		query,
+		queried
 	);
 
-	const {mutate, isLoading: loadingMoreBooks} = useMutation(() => 
-		client(query, books.length+3)
-			.then(res => {
-				const uniqueItems = res.items.filter(it => !data?.items?.some((crt, idx, arr) => crt.id === it.id) );
-				return queryClient.setQueryData(
-					[`books`, query], {...res, items: [...data?.items, ...uniqueItems]}
-				)
-			}
-		)
-	 )
+	const { mutate, isLoading: loadingMoreBooks } = mutation;
 
-	const books = data?.items ?? loadingBooks
 	const handleSubmit = e => {
 		e.preventDefault();
 		setQuery(e.target.elements.search.value.replace(' ', '&'));
-		setQueried(true)
+		setQueried(true);
 	};
 
 	return (
@@ -94,20 +58,35 @@ const Discover = ({query, setQuery, queried, setQueried}) => {
 				</InputGroup>
 			</form>
 			<Flex w='full' h='80%' alignItems='flex-start' justifyContent='center'>
-			{queried ? <HStack
-					justifyContent='space-around'
-					overflow='auto'
-					maxH='full'
-					w='full'
-					flexWrap='wrap'
-					alignItems='flex-start'
-					spacing={0}
-					pb={10}
-				>
-					{books.map(book => <ShowBookCard key={book.id} {...book} />)}
-					<Container py='20px' centerContent w='full'><Button colorScheme='gray' width='50%' variant='solid' onClick={mutate}> {loadingMoreBooks ? <Spinner /> :  "Load More"} </Button></Container>
-				</HStack> : isError ? <Text> {error.message}</Text> : <Text> Try to search a book...</Text> }
-				
+				{queried ? (
+					<HStack
+						justifyContent='space-around'
+						overflow='auto'
+						maxH='full'
+						w='full'
+						flexWrap='wrap'
+						alignItems='flex-start'
+						spacing={0}
+						pb={10}
+					>
+						{books.map(book => <ShowBookCard key={book.id} {...book} />)}
+						<Container py='20px' centerContent w='full'>
+							<Button
+								colorScheme='gray'
+								width='50%'
+								variant='solid'
+								onClick={mutate}
+							>
+								{' '}
+								{loadingMoreBooks ? <Spinner /> : 'Load More'}{' '}
+							</Button>
+						</Container>
+					</HStack>
+				) : isError ? (
+					<Text> {error.message}</Text>
+				) : (
+					<Text> Try to search a book...</Text>
+				)}
 			</Flex>
 			<Footer />
 		</Layout>

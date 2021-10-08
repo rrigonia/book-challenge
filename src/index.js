@@ -15,7 +15,7 @@ const queryClient = new QueryClient({
 		queries: {
 			refetchOnWindowFocus: false,
 			useErrorBoundary: true,
-			staleTime: 9999999
+			staleTime: 5 * 60000
 		},
 		mutations: {
 			useErrorBoundary: true

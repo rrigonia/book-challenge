@@ -6,22 +6,26 @@ import {
 	StackDivider,
 	Heading,
 	VStack,
-	Stack,Container, Spinner
+	Stack,
+	Container,
+	Spinner,
+	Flex
 } from '@chakra-ui/react';
 import { FaTimes } from 'react-icons/fa';
 import { FiBookOpen, FiShare } from 'react-icons/fi';
 import { BiHeadphone } from 'react-icons/bi';
 
-export const BookInfo = ({ book,showError, error,isLoading, ...props }) => {
-	const {title, subTitle, authors,description} = book;
+export const BookInfo = ({ book, showError, error, isLoading, ...props }) => {
+	const { title, subTitle, authors, description } = book;
 	return (
 		<React.Fragment>
 			<Stack mt='67px' {...props} w='full'>
 				<Heading fontSize='24px' fontWeight='400'>
-					<span style={{ fontWeight: '700' }}>{title}</span> {subTitle ? `:${subTitle}` : null}
+					<span style={{ fontWeight: '700' }}>{title}</span>{' '}
+					{subTitle ? `:${subTitle}` : null}
 				</Heading>
 				<Text
-					h='19px'
+					minH='19px'
 					textColor={styles.colors.text.seccondary}
 					letterSpacing='0.670588px'
 				>
@@ -48,8 +52,21 @@ export const BookInfo = ({ book,showError, error,isLoading, ...props }) => {
 				overflow='auto'
 				{...props}
 			>
-				{isLoading ? <Container centerContent><Spinner size='md'/></Container> : showError ? <Text><FaTimes color='red' /> {error.message}</Text> : <Text>{description}</Text>}
-
+				{isLoading ? (
+					<Container centerContent>
+						<Spinner size='md' />
+					</Container>
+				) : showError ? (
+					<Text>
+						<FaTimes color='red' /> {error.message}
+					</Text>
+				) : description ? (
+					<Text>{description}</Text>
+				) : (
+					<Flex as='p' alignItems='center' mt={15}>
+						<FaTimes color='red'/> <Text px={2}>This book do not contain any description!</Text>
+					</Flex>
+				)}
 			</VStack>
 		</React.Fragment>
 	);

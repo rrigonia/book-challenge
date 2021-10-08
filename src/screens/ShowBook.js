@@ -2,37 +2,21 @@ import React from 'react';
 import { Flex, Image, Button } from '@chakra-ui/react';
 import Layout from '../components/Layout';
 import { BookInfo, BookActions } from '../components/book-info';
-import { useQuery } from 'react-query';
 import { useParams } from 'react-router';
-import { client } from '../utils/client-api';
-import bookPlaceholder from '../assets/book-placeholder.svg';
 import { Link } from 'react-router-dom';
-
-const loadingBook = {
-	volumeInfo: {
-		title: 'Loading...',
-		subtitle: 'Loading...',
-		authors: [ 'Loading...'],
-		averageRating: '...',
-		imageLinks: {
-			thumbnail: bookPlaceholder
-		}
-	}
-};
+import { useBook } from '../utils/books';
 
 const ShowBook = () => {
-	
 	const { bookId: id } = useParams();
-	const { data, isLoading, isError, error } = useQuery([ 'books', id ], () =>
-		client(id)
-	);
-	const book = data?.items.find(bk => bk.id === id) ?? loadingBook;
-	const image = book.volumeInfo.imageLinks?.thumbnail ?? book.volumeInfo.imageLinks?.smallThumbnail ?? bookPlaceholder;
-
+	const { data: book, isLoading, isError, error, image } = useBook(id);
+	console.log(book);
 
 	return (
 		<Layout spacing={null}>
-		<Link style={{position: 'absolute', left: '5%', top: '2%'}} to='/books' > <Button>Back</Button> </Link>
+			<Link style={{ position: 'absolute', left: '5%', top: '2%' }} to='/books'>
+				{' '}
+				<Button>Back</Button>{' '}
+			</Link>
 			<Flex
 				w='full'
 				justifyContent='center'
@@ -49,7 +33,6 @@ const ShowBook = () => {
 				isLoading={isLoading}
 				showError={isError}
 				error={error}
-				
 			/>
 			<BookActions />
 		</Layout>
