@@ -4,7 +4,7 @@ import { RiSearch2Line } from 'react-icons/ri';
 
 const HeaderInput = ({ props }) => {
 	return (
-		<InputGroup mt='50px'>
+		<InputGroup mt='50px' {...props}>
 			<InputLeftElement
 				pointerEvents='none'
 				children={<RiSearch2Line color='#DCD8D8' />}
@@ -14,7 +14,6 @@ const HeaderInput = ({ props }) => {
 				type='search'
 				placeholder='Search book'
 				textColor='black'
-				{...props}
 			/>
 		</InputGroup>
 	);

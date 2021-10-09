@@ -16,7 +16,6 @@ const Layout = props => {
 			fontSize='18px'
 			fontWeight='600'
 			lineHeight='21px'
-			overflow='hidden'
 			{...props}
 		/>
 	);

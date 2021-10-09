@@ -5,28 +5,57 @@ import {
 	Text,
 	Flex,
 	Image,
-	Container,
+	Box,
 	Spinner
 } from '@chakra-ui/react';
 import { Oval } from './lib';
 import bgPath from '../assets/path-2.png';
 import bgOval from '../assets/Oval-1.png';
+import ovalReading from '../assets/oval-reading.png';
+import rectangle from '../assets/rectangle.png';
 import miniGraph from '../assets/miniIcon-1.svg';
 import bookPlaceholder from '../assets/book-placeholder.svg';
+import bigOvalReading from '../assets/big-oval-reading.png';
 import { Link } from 'react-router-dom';
+import smallBook from '../assets/smallbook.svg';
+import * as styles from '../style/styles';
 
 const HomeSection = ({ title, link, children, ...props }) => {
 	return (
 		<VStack as='section' w='full' zIndex='5' alignItems='flex-start' {...props}>
 			<HStack w='full' mb='15px' justifyContent='space-between'>
 				<Text>{title}</Text>
-				{link}
+				<Text textColor='#4ABDF1' fontSize='14px'>
+					{link}
+				</Text>
 			</HStack>
 			<HStack
 				w='full'
 				justifyContent='flex-start'
 				overflow='auto'
 				flexWrap='nowrap'
+				height='150px'
+			>
+				{children}
+			</HStack>
+		</VStack>
+	);
+};
+const ReadingSection = ({ title, link, children, ...props }) => {
+	return (
+		<VStack as='section' w='full' zIndex='5' alignItems='flex-start' {...props}>
+			<HStack w='full' mb='15px' justifyContent='space-between' px='20px'>
+				<Text>{title}</Text>
+				<Text textColor='#4ABDF1' fontSize='14px'>
+					{link}
+				</Text>
+			</HStack>
+			<HStack
+				w='full'
+				justifyContent='flex-start'
+				overflow='auto'
+				flexWrap='nowrap'
+				height='150px'
 			>
 				{children}
 			</HStack>
@@ -54,9 +83,7 @@ const DiscoverBookCard = ({ volumeInfo, loading, id, idx }) => {
 				px='20px'
 				py='15px'
 			>
-				
-					<Spinner />
-				
+				<Spinner />
 			</Flex>
 		);
 	} else {
@@ -77,24 +104,17 @@ const DiscoverBookCard = ({ volumeInfo, loading, id, idx }) => {
 				px='20px'
 				py='15px'
 			>
-				<VStack alignItems='flex-start' spacing='5px'>
-					<Text
-						fontSize='27px'
-						textColor='#FEFEFE'
-						zIndex={5}
-						fontWeight='bold'
-						mt='2px'
-					>
+				<VStack
+					alignItems='flex-start'
+					spacing='5px'
+					zIndex={5}
+					mt='2px'
+					textColor='#FEFEFE'
+				>
+					<Text fontSize='27px' fontWeight='bold'>
 						{title.substring(0, 7)}..
 					</Text>
-					<Text
-						fontSize='14px'
-						textColor='#FEFEFE'
-						zIndex={5}
-						fontWeight='normal'
-						letterSpacing='1.28889px'
-						mt='2px'
-					>
+					<Text fontSize='14px' fontWeight='normal' letterSpacing='1.28889px'>
 						{authors ? authors[0] : 'Unknown'}
 					</Text>
 				</VStack>
@@ -112,7 +132,9 @@ const DiscoverBookCard = ({ volumeInfo, loading, id, idx }) => {
 					alignItems='center'
 				>
 					<Image src={miniGraph} w='16px' h='16px' />{' '}
-					<span style={{ fontWeight: '700' }}>120+</span> Read now
+					<Text ml='5px'>
+						<span style={{ fontWeight: '700' }}>120+</span> Read now
+					</Text>
 				</Flex>
 				<Image
 					src={bgOval}
@@ -160,4 +182,86 @@ const DiscoverBookCard = ({ volumeInfo, loading, id, idx }) => {
 	);
 };
 
-export { HomeSection, DiscoverBookCard };
+const ReadingBook = ({ id, volumeInfo }) => {
+	const {title, authors, imageLinks} = volumeInfo;
+	const image = imageLinks?.thumbnail ?? imageLinks?.smallThumbnail ?? bookPlaceholder;
+	return (
+		<Link to={`/books/${id}`}>
+			<Flex
+				alignItems='center'
+				bg='#EEF5DB'
+				w='331px'
+				position='relative'
+				textColor='black'
+				flexShrink={0}
+				// ml='-20px'
+				h='100px'
+				py='10px'
+				px='20px'
+			>
+				<Image w='91px' h='136px' src={image} />
+				<VStack ml='8px' alignItems='space-between' alignSelf='flex-start'>
+					<VStack alignItems='flex-start' spacing='5px'>
+						<Text fontSize='20px' zIndex={5} fontWeight='700'>
+						{title.substring(0, 7)}..
+						</Text>
+						<Text fontSize='10px' zIndex={5} fontWeight='400'>
+							by {authors ? authors[0] : 'Unknown'}
+						</Text>
+					</VStack>
+					<Flex
+						fontSize='10px'
+						zIndex={5}
+						fontWeight='400'
+						letterSpacing='0.020635px'
+						alignItems='center'
+					>
+						<Image src={smallBook} w='16px' h='16px' />{' '}
+						<Text ml='5px'>
+							Chapter{' '}
+							<span style={{ color: styles.colors.text.seccondary }}>
+								{' '}
+								2{' '}
+							</span>{' '}
+							from 9
+						</Text>
+					</Flex>
+				</VStack>
+				<ReadingMask />
+			</Flex>
+		</Link>
+	);
+};
+
+function ReadingMask() {
+	return (
+		<Box position='absolute' w='full' ml='-20px' h='full' overflow='hidden'>
+			<Image
+				src={ovalReading}
+				style={{
+					position: 'absolute',
+					left: '223px',
+					top: '-9%'
+				}}
+			/>
+			<Image
+				src={bigOvalReading}
+				style={{
+					position: 'absolute',
+					left: '295px',
+					top: '-25%'
+				}}
+			/>
+			<Image
+				src={rectangle}
+				style={{
+					position: 'absolute',
+					left: '309.17px',
+					top: '60%'
+				}}
+			/>
+		</Box>
+	);
+}
+
+export { HomeSection, DiscoverBookCard, ReadingBook, ReadingSection };

@@ -21,6 +21,33 @@ const Oval = ({ style, withImage, ...props }) => {
 	);
 };
 
+function BgOvalsHome() {
+	return (
+		<React.Fragment>
+			<Oval
+				style={{
+					width: 127,
+					height: 127,
+					left: '77.4%',
+					top: '18.9%',
+					border: 'none',
+					background: `url(${bgImage})`
+				}}
+			/>
+			<Oval
+				style={{
+					width: 127,
+					height: 127,
+					left: '7%',
+					top: '24%',
+					border: 'none',
+					background: `url(${bgImage})`
+				}}
+			/>
+		</React.Fragment>
+	);
+}
+
 function BgOvals() {
 	return (
 		<React.Fragment>
@@ -68,4 +95,4 @@ function BgOvals() {
 	);
 }
 
-export { BgOvals, Oval };
+export { BgOvals, Oval, BgOvalsHome };
