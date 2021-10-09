@@ -39,7 +39,7 @@ function BgOvalsHome() {
 					width: 127,
 					height: 127,
 					left: '7%',
-					top: '24%',
+					top: '23%',
 					border: 'none',
 					background: `url(${bgImage})`
 				}}

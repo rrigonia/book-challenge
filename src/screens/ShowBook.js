@@ -37,7 +37,14 @@ const ShowBook = () => {
 				bg='#FFF6E5'
 			>
 				{/* <BgOvals /> */}
-				<Image src={image} maxW='151px' h='234px' mt='84px' zIndex='2' />
+				<Image
+					src={image}
+					maxW='151px'
+					h='234px'
+					mt='84px'
+					zIndex='2'
+					borderRadius='5px'
+				/>
 			</Flex>
 			<BgOvals />
 			<BookInfo

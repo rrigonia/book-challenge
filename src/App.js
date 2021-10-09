@@ -5,6 +5,7 @@ import Home from './screens/Home';
 import Profile from './screens/Profile';
 import ShowBook from './screens/ShowBook';
 // import { useColorMode } from '@chakra-ui/react';
+const user = { name: 'Mehmed Al Fatih', imageProfile: '' };
 
 function App() {
 	// const { toggleColorMode, colorMode } = useColorMode();
@@ -17,14 +18,18 @@ const AppRoutes = () => {
 	const searchProps = { query, setQuery, queried, setQueried };
 	return (
 		<Switch>
-			<Route exact path='/' render={() => <Home />} />
+			<Route exact path='/' render={() => <Home user={user} />} />
 			<Route exact path='/books' render={() => <Discover {...searchProps} />} />
 			<Route
 				exact
 				path='/books/:bookId'
 				render={() => <ShowBook {...searchProps} />}
 			/>
-			<Route exact path='/profile/:profileId' render={() => <Profile />} />
+			<Route
+				exact
+				path='/profile/:profileId'
+				render={() => <Profile user={user} />}
+			/>
 		</Switch>
 	);
 };

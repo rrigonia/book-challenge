@@ -20,9 +20,9 @@ import { Link } from 'react-router-dom';
 import smallBook from '../assets/smallbook.svg';
 import * as styles from '../style/styles';
 
-const HomeSection = ({ title, link, children, ...props }) => {
+const HomeSection = ({ title, link, children, last, ...props }) => {
 	return (
-		<VStack as='section' w='full' zIndex='5' alignItems='flex-start' {...props}>
+		<VStack as='section' w='full' zIndex='5' spacing={0} alignItems='flex-start' {...props}>
 			<HStack w='full' mb='15px' justifyContent='space-between'>
 				<Text>{title}</Text>
 				<Text textColor='#4ABDF1' fontSize='14px'>
@@ -34,7 +34,7 @@ const HomeSection = ({ title, link, children, ...props }) => {
 				justifyContent='flex-start'
 				overflow='auto'
 				flexWrap='nowrap'
-				height='150px'
+				mb={last ? '69px !important' : '0'}
 			>
 				{children}
 			</HStack>
@@ -172,7 +172,7 @@ const DiscoverBookCard = ({ volumeInfo, loading, id, idx }) => {
 				<Image
 					src={image}
 					w='72px'
-					h='111px'
+					h={isFirst ? '111px' : '100px'}
 					borderRadius='5px'
 					bg='green.400'
 					ml='auto'
@@ -199,7 +199,7 @@ const ReadingBook = ({ id, volumeInfo }) => {
 				py='10px'
 				px='20px'
 			>
-				<Image w='91px' h='136px' src={image} />
+				<Image w='91px' h='136px' src={image} borderRadius='5px' />
 				<VStack ml='8px' alignItems='space-between' alignSelf='flex-start'>
 					<VStack alignItems='flex-start' spacing='5px'>
 						<Text fontSize='20px' zIndex={5} fontWeight='700'>

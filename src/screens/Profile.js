@@ -5,7 +5,7 @@ import HeaderInput from '../components/HeaderInput';
 import Layout from '../components/Layout';
 import Footer from '../components/Footer';
 
-const Profile = () => {
+const Profile = ({ user }) => {
 	return (
 		<Layout px='20px'>
 			<HeaderInput />
@@ -21,7 +21,7 @@ const Profile = () => {
 					fontWeight='600'
 					textColor={styles.colors.text.seccondary}
 				>
-					Mehmed Al Fatih 👋
+					{user.name} 👋
 				</Text>
 			</Heading>
 

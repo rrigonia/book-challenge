@@ -11,8 +11,8 @@ const ShowBookCard = ({ volumeInfo, id }) => {
 
 	return (
 		
-			<VStack maxW='30%' alignItems='flex-start' p={3}>
-				<Link to={`/books/${id}`}><Image src={image} h='152px' /></Link>
+			<VStack maxW='32.5%' alignItems='flex-start' p={3}>
+				<Link to={`/books/${id}`}><Image src={image} h='152px' borderRadius='5px' /></Link>
 				<Link to={`/books/${id}`}>
 
 				<VStack spacing={0} alignItems='flex-start'>
