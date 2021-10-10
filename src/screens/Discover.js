@@ -70,9 +70,10 @@ const Discover = ({ query, setQuery, queried, setQueried }) => {
 						pb={10}
 					>
 						{books.map(book => <ShowBookCard key={book.id} {...book} />)}
-						<Container py='20px' centerContent w='full'>
+						<Container py='20px' maxW='full' centerContent w='full'>
 							<Button
 								colorScheme='gray'
+								bg='gray.200'
 								width='50%'
 								variant='solid'
 								onClick={mutate}

@@ -1,5 +1,6 @@
 import React from 'react';
 import bgImage from '../assets/oval-5.png';
+import * as styles from '../style/styles';
 
 const Oval = ({ style, withImage, ...props }) => {
 	return (
@@ -67,6 +68,7 @@ function BgOvals() {
 					height: 48,
 					left: '60%',
 					top: '27%',
+					border: 'none',
 					background: `url(${bgImage})`,
 					transform: 'rotate(25deg)'
 				}}
@@ -77,6 +79,7 @@ function BgOvals() {
 					height: 100,
 					left: '87%',
 					top: '-4.5%',
+					border: 'none',
 					background: `url(${bgImage})`,
 					transform: 'rotate(25deg)'
 				}}
@@ -87,7 +90,7 @@ function BgOvals() {
 					height: 15,
 					left: '12%',
 					top: '15.5%',
-					background: '#FF6978',
+					background: styles.colors.text.seccondary,
 					border: 'none'
 				}}
 			/>

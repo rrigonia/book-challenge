@@ -4,7 +4,7 @@ import { BiHome, BiBookAlt } from 'react-icons/bi';
 import { BsPerson } from 'react-icons/bs';
 import { NavLink } from 'react-router-dom';
 
-const Footer = props => {
+function Footer(props) {
 	return (
 		<HStack
 			w='full'
@@ -38,6 +38,8 @@ const Footer = props => {
 			</NavLink>
 		</HStack>
 	);
-};
+}
+
+Footer = React.memo(Footer);
 
 export default Footer;

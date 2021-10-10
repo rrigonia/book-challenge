@@ -71,7 +71,7 @@ const DiscoverBookCard = ({ volumeInfo, loading, id, idx }) => {
 	if (loading) {
 		return (
 			<Flex
-				bg={odd ? 'rgba(0, 23, 61, 0.95)' : 'rgba(69, 20, 117, 0.98)'}
+				bg={odd ? 'rgba(0, 23, 61, 0.95)' : 'rgba(69, 20, 117, 0.95)'}
 				position='relative'
 				borderRadius='5px'
 				w='272px'
@@ -91,15 +91,12 @@ const DiscoverBookCard = ({ volumeInfo, loading, id, idx }) => {
 	return (
 		<Link to={`/books/${id}`}>
 			<Flex
-				bg={odd ? 'rgba(0, 23, 61, 0.95)' : 'rgba(69, 20, 117, 0.95)'}
+				bg={odd ? 'rgba(0, 23, 61, 0.95)' : 'rgba(69, 20, 117, 0.9)'}
 				position='relative'
 				borderRadius='5px'
 				w='272px'
 				flexShrink={0}
 				h={isFirst ? `139px` : '128px'}
-				_hover={{
-					height: '139px'
-				}}
 				overflow='hidden'
 				px='20px'
 				py='15px'
@@ -111,12 +108,16 @@ const DiscoverBookCard = ({ volumeInfo, loading, id, idx }) => {
 					mt='2px'
 					textColor='#FEFEFE'
 				>
-					<Text fontSize='27px' fontWeight='bold'>
-						{title.substring(0, 7)}..
-					</Text>
-					<Text fontSize='14px' fontWeight='normal' letterSpacing='1.28889px'>
-						{authors ? authors[0] : 'Unknown'}
-					</Text>
+					<Flex h='36px' alignItems='center'>
+						<Text fontSize='27px' fontWeight='bold' >
+							{title.substring(0, 7)}..
+						</Text>
+					</Flex>
+					<Flex h='16px' alignItems='center'>
+						<Text fontSize='14px' textColor='#E7E7E1' fontWeight='normal' letterSpacing='1.28889px' fontStyle='italic'>
+							{authors ? authors[0] : 'Unknown'}
+						</Text>
+					</Flex>
 				</VStack>
 
 				<Flex

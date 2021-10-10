@@ -15,12 +15,12 @@ import { FaTimes } from 'react-icons/fa';
 import { FiBookOpen, FiShare } from 'react-icons/fi';
 import { BiHeadphone } from 'react-icons/bi';
 
-export const BookInfo = ({ book, showError, error, isLoading, ...props }) => {
+function BookInfo ({ book, showError, error, isLoading, ...props }) {
 	const { title, subTitle, authors, description } = book;
 	return (
 		<React.Fragment>
 			<Stack mt='67px' {...props} w='full'>
-				<Heading fontSize='24px' fontWeight='400'>
+				<Heading fontSize={styles.fontSize.heading} fontWeight='400'>
 					<span style={{ fontWeight: '700' }}>{title}</span>{' '}
 					{subTitle ? `:${subTitle}` : null}
 				</Heading>
@@ -71,8 +71,9 @@ export const BookInfo = ({ book, showError, error, isLoading, ...props }) => {
 		</React.Fragment>
 	);
 };
+BookInfo = React.memo(BookInfo)
 
-export const BookActions = () => {
+function BookActions () {
 	return (
 		<HStack
 			w='335px'
@@ -98,3 +99,7 @@ export const BookActions = () => {
 		</HStack>
 	);
 };
+BookActions = React.memo(BookActions)
+
+export {BookInfo, BookActions}
+

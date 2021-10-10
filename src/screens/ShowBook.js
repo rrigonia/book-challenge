@@ -23,7 +23,8 @@ const ShowBook = () => {
 					left: '9%',
 					top: '7%',
 					color: 'black',
-					padding: '8px'
+					padding: '8px',
+					cursor: 'pointer'
 				}}
 				onClick={history.goBack}
 			>

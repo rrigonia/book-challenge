@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 
 
-const ShowBookCard = ({ volumeInfo, id }) => {
+function ShowBookCard ({ volumeInfo, id }) {
 	const { title, authors, imageLinks } = volumeInfo;
 	const image = imageLinks?.thumbnail ?? imageLinks?.smallThumbnail ?? bookPlaceholder;
 
@@ -28,5 +28,7 @@ const ShowBookCard = ({ volumeInfo, id }) => {
 	
 	);
 };
+
+ShowBookCard = React.memo(ShowBookCard)
 
 export default ShowBookCard;

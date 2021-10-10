@@ -19,13 +19,13 @@ const randomWord = 'Rock and Roll';
 const Home = ({ user }) => {
 	const { data: books, isLoading } = useBooks(randomWord);
 	return (
-		<Layout>
+		<Layout overflowX='hidden' overflowY='auto'>
 			<Box px='20px'>
 				<HeaderInput />
 			</Box>
 			<Heading
 				lineHeight='28,64px'
-				fontSize='24px'
+				fontSize={styles.fontSize.heading}
 				fontWeight='normal'
 				alignSelf='flex-start'
 				px='20px'
@@ -51,7 +51,7 @@ const Home = ({ user }) => {
 				))}
 			</HomeSection>
 			<ReadingSection title='Currently Reading' link='All'>
-				{books.slice(5, 7).map(book => <ReadingBook key={book.id} {...book} />)}
+				{books.slice(5, 8).map(book => <ReadingBook key={book.id} {...book} />)}
 			</ReadingSection>
 			<HomeSection
 				px='20px'
