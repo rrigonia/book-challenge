@@ -58,7 +58,7 @@ const Discover = ({ query, setQuery, queried, setQueried }) => {
 				</InputGroup>
 			</form>
 			<Flex w='full' h='80%' alignItems='flex-start' justifyContent='center'>
-				{queried ? (
+				{queried && !isError ? (
 					<HStack
 						justifyContent='space-around'
 						overflow='auto'
@@ -70,6 +70,7 @@ const Discover = ({ query, setQuery, queried, setQueried }) => {
 						pb={10}
 					>
 						{books.map(book => <ShowBookCard key={book.id} {...book} />)}
+
 						<Container py='20px' maxW='full' centerContent w='full'>
 							<Button
 								colorScheme='gray'
@@ -84,7 +85,10 @@ const Discover = ({ query, setQuery, queried, setQueried }) => {
 						</Container>
 					</HStack>
 				) : isError ? (
-					<Text> {error.message}</Text>
+					<div role='alert'>
+						<p>Something went wrong:</p>
+						<pre>{error.message}</pre>
+					</div>
 				) : (
 					<Text> Try to search a book...</Text>
 				)}

@@ -1,24 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import './theme/style.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { ChakraProvider, ColorModeScript } from '@chakra-ui/react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
-import { ErrorBoundary } from 'react-error-boundary';
 import { BrowserRouter as Router } from 'react-router-dom';
-import theme from './theme';
+import theme from './theme/index';
 
 const queryClient = new QueryClient({
 	defaultOptions: {
 		queries: {
 			refetchOnWindowFocus: false,
-			useErrorBoundary: true,
+			// useErrorBoundary: true,
 			staleTime: 5 * 60000
 		},
 		mutations: {
-			useErrorBoundary: true
+			// useErrorBoundary: true
 		}
 	}
 });
@@ -28,9 +27,7 @@ ReactDOM.render(
 		<QueryClientProvider client={queryClient}>
 			<Router>
 				<ColorModeScript initialColorMode='light' />
-				<ErrorBoundary FallbackComponent={<div>Error </div>}>
-					<App />
-				</ErrorBoundary>
+				<App />
 			</Router>
 			<ReactQueryDevtools initialIsOpen={false} />
 		</QueryClientProvider>

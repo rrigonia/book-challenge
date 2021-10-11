@@ -1,4 +1,5 @@
 import React from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
 import { Route, Switch } from 'react-router';
 import Discover from './screens/Discover';
 import Home from './screens/Home';
@@ -7,9 +8,24 @@ import ShowBook from './screens/ShowBook';
 // import { useColorMode } from '@chakra-ui/react';
 const user = { name: 'Mehmed Al Fatih', imageProfile: '' };
 
+function ErrorFallback({ error, resetErrorBoundary }) {
+	return (
+		<div role='alert'>
+			<p>Something went wrong:</p>
+			<pre>{error.message}</pre>
+			<button onClick={resetErrorBoundary}>Try again</button>
+		</div>
+	);
+}
+
 function App() {
 	// const { toggleColorMode, colorMode } = useColorMode();
-	return <AppRoutes />;
+	return (
+		<ErrorBoundary FallbackComponent={ErrorFallback}>
+			{' '}
+			<AppRoutes />
+		</ErrorBoundary>
+	);
 }
 
 const AppRoutes = () => {

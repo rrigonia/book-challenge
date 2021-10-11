@@ -25,7 +25,7 @@ const HomeSection = ({ title, link, children, last, ...props }) => {
 		<VStack as='section' w='full' zIndex='5' spacing={0} alignItems='flex-start' {...props}>
 			<HStack w='full' mb='15px' justifyContent='space-between'>
 				<Text>{title}</Text>
-				<Text textColor='#4ABDF1' fontSize='14px'>
+				<Text textColor='#4ABDF1' fontSize='md'>
 					{link}
 				</Text>
 			</HStack>
@@ -46,7 +46,7 @@ const ReadingSection = ({ title, link, children, ...props }) => {
 		<VStack as='section' w='full' zIndex='5' alignItems='flex-start' {...props}>
 			<HStack w='full' mb='15px' justifyContent='space-between' px='20px'>
 				<Text>{title}</Text>
-				<Text textColor='#4ABDF1' fontSize='14px'>
+				<Text textColor='#4ABDF1' fontSize='md'>
 					{link}
 				</Text>
 			</HStack>
@@ -109,12 +109,12 @@ const DiscoverBookCard = ({ volumeInfo, loading, id, idx }) => {
 					textColor='#FEFEFE'
 				>
 					<Flex h='36px' alignItems='center'>
-						<Text fontSize='27px' fontWeight='bold' >
+						<Text fontSize='2xl' fontWeight='bold' >
 							{title.substring(0, 7)}..
 						</Text>
 					</Flex>
 					<Flex h='16px' alignItems='center'>
-						<Text fontSize='14px' textColor='#E7E7E1' fontWeight='normal' letterSpacing='1.28889px' fontStyle='italic'>
+						<Text fontSize='md' textColor='#E7E7E1' fontWeight='normal' letterSpacing='1.28889px' fontStyle='italic'>
 							{authors ? authors[0] : 'Unknown'}
 						</Text>
 					</Flex>
@@ -124,7 +124,7 @@ const DiscoverBookCard = ({ volumeInfo, loading, id, idx }) => {
 					position='absolute'
 					bottom='22px'
 					left='20px'
-					fontSize='10px'
+					fontSize='sm'
 					textColor='#FEFEFE'
 					zIndex={5}
 					fontWeight='400'
@@ -195,7 +195,6 @@ const ReadingBook = ({ id, volumeInfo }) => {
 				position='relative'
 				textColor='black'
 				flexShrink={0}
-				// ml='-20px'
 				h='100px'
 				py='10px'
 				px='20px'
@@ -206,12 +205,12 @@ const ReadingBook = ({ id, volumeInfo }) => {
 						<Text fontSize='20px' zIndex={5} fontWeight='700'>
 						{title.substring(0, 7)}..
 						</Text>
-						<Text fontSize='10px' zIndex={5} fontWeight='400'>
+						<Text fontSize='sm' zIndex={5} fontWeight='400'>
 							by {authors ? authors[0] : 'Unknown'}
 						</Text>
 					</VStack>
 					<Flex
-						fontSize='10px'
+						fontSize='sm'
 						zIndex={5}
 						fontWeight='400'
 						letterSpacing='0.020635px'

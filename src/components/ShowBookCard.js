@@ -19,7 +19,7 @@ function ShowBookCard ({ volumeInfo, id }) {
 					<Text lineHeight='14px' fontSize='12px'>
 						{title.substring(0, 10)} {title.length > 10 && "..."}
 					</Text>
-					{ <Text lineHeight='12px' pt='5px' fontSize='10px'>
+					{ <Text lineHeight='12px' pt='5px' fontSize='sm'>
 						by {authors ? `${authors[0].substring(0, 8)} ${authors[0].length > 8 ? '...' : null}` : 'unknown' } 
 					</Text> }
 				</VStack>

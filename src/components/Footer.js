@@ -15,7 +15,7 @@ function Footer(props) {
 			bottom={0}
 			justifyContent='space-around'
 			alignItems='center'
-			fontSize='10px'
+			fontSize='sm'
 			fontWeight='400'
 			color='#CFCBD2'
 			zIndex='5'

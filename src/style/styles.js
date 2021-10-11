@@ -4,7 +4,3 @@ export const colors = {
 		seccondary: '#FF6978'
 	}
 };
-
-export const fontSize = {
-	heading: '24px'
-};

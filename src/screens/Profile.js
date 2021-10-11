@@ -11,7 +11,7 @@ const Profile = ({ user }) => {
 			<HeaderInput />
 			<Heading
 				lineHeight='28,64px'
-				fontSize={styles.fontSize.heading}
+				fontSize='xl'
 				fontWeight='normal'
 				alignSelf='flex-start'
 			>

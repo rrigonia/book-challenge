@@ -25,19 +25,21 @@ const Home = ({ user }) => {
 			</Box>
 			<Heading
 				lineHeight='28,64px'
-				fontSize={styles.fontSize.heading}
+				fontSize='xl'
 				fontWeight='normal'
 				alignSelf='flex-start'
 				px='20px'
 			>
 				Hi,{' '}
 				<Text
+					as='span'
 					display='inline'
 					fontWeight='600'
 					textColor={styles.colors.text.seccondary}
 				>
-					{user.name} 👋
-				</Text>
+					{user.name}
+				</Text>{' '}
+				👋
 			</Heading>
 			<BgOvalsHome />
 			<HomeSection px='20px' title='Discover new book' link='More'>

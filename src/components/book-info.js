@@ -20,7 +20,7 @@ function BookInfo ({ book, showError, error, isLoading, ...props }) {
 	return (
 		<React.Fragment>
 			<Stack mt='67px' {...props} w='full'>
-				<Heading fontSize={styles.fontSize.heading} fontWeight='400'>
+				<Heading fontSize='xl' fontWeight='400'>
 					<span style={{ fontWeight: '700' }}>{title}</span>{' '}
 					{subTitle ? `:${subTitle}` : null}
 				</Heading>
@@ -39,7 +39,7 @@ function BookInfo ({ book, showError, error, isLoading, ...props }) {
 				</Text>
 			</Stack>
 			<VStack
-				fontSize='14px'
+				fontSize='md'
 				lineHeight='25px'
 				spacing='20px'
 				mt='10px'
@@ -83,7 +83,7 @@ function BookActions () {
 			position='absolute'
 			bottom='53px'
 			justifyContent='space-between'
-			fontSize='14px'
+			fontSize='md'
 			fontWeight='bold'
 			divider={<StackDivider borderColor='rgba(151, 151, 151, 0.2)' />}
 		>
