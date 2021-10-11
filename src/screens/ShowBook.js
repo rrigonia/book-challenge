@@ -37,7 +37,6 @@ const ShowBook = () => {
 				borderRadius='0px 0px 100px 0px'
 				bg='#FFF6E5'
 			>
-				{/* <BgOvals /> */}
 				<Image
 					src={image}
 					maxW='151px'

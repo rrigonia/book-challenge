@@ -3,35 +3,12 @@ import ReactDOM from 'react-dom';
 import './theme/style.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { ChakraProvider, ColorModeScript } from '@chakra-ui/react';
-import { QueryClient, QueryClientProvider } from 'react-query';
-import { ReactQueryDevtools } from 'react-query/devtools';
-import { BrowserRouter as Router } from 'react-router-dom';
-import theme from './theme/index';
-
-const queryClient = new QueryClient({
-	defaultOptions: {
-		queries: {
-			refetchOnWindowFocus: false,
-			// useErrorBoundary: true,
-			staleTime: 5 * 60000
-		},
-		mutations: {
-			// useErrorBoundary: true
-		}
-	}
-});
+import AppProvider from './context';
 
 ReactDOM.render(
-	<ChakraProvider theme={theme}>
-		<QueryClientProvider client={queryClient}>
-			<Router>
-				<ColorModeScript initialColorMode='light' />
-				<App />
-			</Router>
-			<ReactQueryDevtools initialIsOpen={false} />
-		</QueryClientProvider>
-	</ChakraProvider>,
+	<AppProvider>
+		<App />
+	</AppProvider>,
 	document.getElementById('root')
 );
 

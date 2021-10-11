@@ -18,11 +18,17 @@ import bookPlaceholder from '../assets/book-placeholder.svg';
 import bigOvalReading from '../assets/big-oval-reading.png';
 import { Link } from 'react-router-dom';
 import smallBook from '../assets/smallbook.svg';
-import * as styles from '../style/styles';
 
 const HomeSection = ({ title, link, children, last, ...props }) => {
 	return (
-		<VStack as='section' w='full' zIndex='5' spacing={0} alignItems='flex-start' {...props}>
+		<VStack
+			as='section'
+			w='full'
+			zIndex='5'
+			spacing={0}
+			alignItems='flex-start'
+			{...props}
+		>
 			<HStack w='full' mb='15px' justifyContent='space-between'>
 				<Text>{title}</Text>
 				<Text textColor='#4ABDF1' fontSize='md'>
@@ -109,12 +115,18 @@ const DiscoverBookCard = ({ volumeInfo, loading, id, idx }) => {
 					textColor='#FEFEFE'
 				>
 					<Flex h='36px' alignItems='center'>
-						<Text fontSize='2xl' fontWeight='bold' >
+						<Text fontSize='2xl' fontWeight='bold'>
 							{title.substring(0, 7)}..
 						</Text>
 					</Flex>
 					<Flex h='16px' alignItems='center'>
-						<Text fontSize='md' textColor='#E7E7E1' fontWeight='normal' letterSpacing='1.28889px' fontStyle='italic'>
+						<Text
+							fontSize='md'
+							textColor='#E7E7E1'
+							fontWeight='normal'
+							letterSpacing='1.28889px'
+							fontStyle='italic'
+						>
 							{authors ? authors[0] : 'Unknown'}
 						</Text>
 					</Flex>
@@ -183,9 +195,27 @@ const DiscoverBookCard = ({ volumeInfo, loading, id, idx }) => {
 	);
 };
 
-const ReadingBook = ({ id, volumeInfo }) => {
-	const {title, authors, imageLinks} = volumeInfo;
+const ReadingBook = ({ id, volumeInfo, loading }) => {
+	const { title, authors, imageLinks } = volumeInfo;
 	const image = imageLinks?.thumbnail ?? imageLinks?.smallThumbnail ?? bookPlaceholder;
+
+	if (loading) {
+		return (
+			<Flex
+				alignItems='center'
+				bg='#EEF5DB'
+				w='331px'
+				position='relative'
+				textColor='black'
+				flexShrink={0}
+				h='100px'
+				py='10px'
+				px='20px'
+			>
+				<Spinner />
+			</Flex>
+		);
+	}
 	return (
 		<Link to={`/books/${id}`}>
 			<Flex
@@ -203,7 +233,7 @@ const ReadingBook = ({ id, volumeInfo }) => {
 				<VStack ml='8px' alignItems='space-between' alignSelf='flex-start'>
 					<VStack alignItems='flex-start' spacing='5px'>
 						<Text fontSize='20px' zIndex={5} fontWeight='700'>
-						{title.substring(0, 7)}..
+							{title.substring(0, 7)}..
 						</Text>
 						<Text fontSize='sm' zIndex={5} fontWeight='400'>
 							by {authors ? authors[0] : 'Unknown'}
@@ -219,10 +249,10 @@ const ReadingBook = ({ id, volumeInfo }) => {
 						<Image src={smallBook} w='16px' h='16px' />{' '}
 						<Text ml='5px'>
 							Chapter{' '}
-							<span style={{ color: styles.colors.text.seccondary }}>
+							<Text as='span' textColor='brand.seccondary'>
 								{' '}
 								2{' '}
-							</span>{' '}
+							</Text>{' '}
 							from 9
 						</Text>
 					</Flex>

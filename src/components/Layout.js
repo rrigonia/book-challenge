@@ -1,6 +1,5 @@
 import React from 'react';
 import { VStack } from '@chakra-ui/react';
-import * as styles from '../style/styles';
 
 const Layout = props => {
 	return (
@@ -11,7 +10,7 @@ const Layout = props => {
 			h='100vh'
 			alignItems='center'
 			w='100vw'
-			textColor={styles.colors.text.primary}
+			textColor='brand.primary'
 			letterSpacing='0.5px'
 			fontSize='18px'
 			fontWeight='600'

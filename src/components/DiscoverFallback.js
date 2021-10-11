@@ -4,10 +4,9 @@ import {
 	InputGroup,
 	InputLeftElement,
 	Input,
-	Spinner,
-	Text
+	Spinner
 } from '@chakra-ui/react';
-
+import { FaSearch } from 'react-icons/fa';
 import Layout from '../components/Layout';
 import Footer from '../components/Footer';
 
@@ -20,7 +19,7 @@ const DiscoverFallback = () => {
 						as='button'
 						type='submit'
 						pointerEvents='none'
-						children={<Spinner size='sm' />}
+						children={<FaSearch color='#DCD8D8' />}
 					/>
 					<Input
 						w='336px'
@@ -31,11 +30,9 @@ const DiscoverFallback = () => {
 					/>
 				</InputGroup>
 			</form>
+
 			<Flex w='full' h='80%' alignItems='flex-start' justifyContent='center'>
-				<Text>
-					{' '}
-					<Spinner />{' '}
-				</Text>
+				<Spinner />
 			</Flex>
 			<Footer />
 		</Layout>

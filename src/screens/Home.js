@@ -1,6 +1,5 @@
 import React from 'react';
 import { Flex, Box, Heading, Text, Image } from '@chakra-ui/react';
-import * as styles from '../style/styles';
 import {
 	HomeSection,
 	DiscoverBookCard,
@@ -35,7 +34,7 @@ const Home = ({ user }) => {
 					as='span'
 					display='inline'
 					fontWeight='600'
-					textColor={styles.colors.text.seccondary}
+					textColor='brand.seccondary'
 				>
 					{user.name}
 				</Text>{' '}
@@ -43,17 +42,23 @@ const Home = ({ user }) => {
 			</Heading>
 			<BgOvalsHome />
 			<HomeSection px='20px' title='Discover new book' link='More'>
-				{books.map((book, idx) => (
-					<DiscoverBookCard
-						key={book.id}
-						{...book}
-						loading={isLoading}
-						idx={idx}
-					/>
-				))}
+				{books
+					.slice(0, 3)
+					.map((book, idx) => (
+						<DiscoverBookCard
+							key={book.id}
+							{...book}
+							loading={isLoading}
+							idx={idx}
+						/>
+					))}
 			</HomeSection>
 			<ReadingSection title='Currently Reading' link='All'>
-				{books.slice(5, 8).map(book => <ReadingBook key={book.id} {...book} />)}
+				{books
+					.slice(5, 8)
+					.map(book => (
+						<ReadingBook key={book.id} {...book} loading={isLoading} />
+					))}
 			</ReadingSection>
 			<HomeSection
 				px='20px'

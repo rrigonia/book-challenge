@@ -1,5 +1,4 @@
 import React from 'react';
-import * as styles from '../style/styles';
 import {
 	Text,
 	HStack,
@@ -26,7 +25,7 @@ function BookInfo ({ book, showError, error, isLoading, ...props }) {
 				</Heading>
 				<Text
 					minH='19px'
-					textColor={styles.colors.text.seccondary}
+					textColor='brand.seccondary'
 					letterSpacing='0.670588px'
 				>
 					{authors?.map((author, idx) => (
@@ -57,13 +56,13 @@ function BookInfo ({ book, showError, error, isLoading, ...props }) {
 						<Spinner size='md' />
 					</Container>
 				) : showError ? (
-					<Text>
-						<FaTimes color='red' /> {error.message}
-					</Text>
+					<Flex alignItems='center' mt={15}>
+						<FaTimes color='red' /> <Text px={2}>{error.message}</Text>
+					</Flex>
 				) : description ? (
 					<Text>{description}</Text>
 				) : (
-					<Flex as='p' alignItems='center' mt={15}>
+					<Flex alignItems='center' mt={15}>
 						<FaTimes color='red'/> <Text px={2}>This book do not contain any description!</Text>
 					</Flex>
 				)}

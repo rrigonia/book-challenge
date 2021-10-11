@@ -13,7 +13,8 @@ const config = {
 	},
 	colors: {
 		brand: {
-			50: 'green'
+			primary: '#54565A',
+			seccondary: '#FF6978'
 		}
 	},
 	initialColorMode: 'light',

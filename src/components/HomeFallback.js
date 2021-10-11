@@ -23,10 +23,36 @@ const HomeFallback = () => {
 			</Heading>
 			<BgOvalsHome />
 			<HomeSection px='20px' title='Discover new book' link='More'>
-				<Spinner />
+				<Flex
+					bg='rgba(0, 23, 61, 0.95)'
+					position='relative'
+					borderRadius='5px'
+					w='272px'
+					flexShrink={0}
+					h='139px'
+					overflow='hidden'
+					alignItems='center'
+					justifyContent='center'
+					px='20px'
+					py='15px'
+				>
+					<Spinner />
+				</Flex>
 			</HomeSection>
 			<ReadingSection title='Currently Reading' link='All'>
-				<Spinner />
+				<Flex
+					alignItems='center'
+					bg='#EEF5DB'
+					w='331px'
+					position='relative'
+					textColor='black'
+					flexShrink={0}
+					h='100px'
+					py='10px'
+					px='20px'
+				>
+					<Spinner />
+				</Flex>
 			</ReadingSection>
 			<HomeSection
 				px='20px'

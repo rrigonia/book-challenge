@@ -7,7 +7,8 @@ import {
 	Spinner,
 	Text,
 	Button,
-	Container
+	Container,
+	Box
 } from '@chakra-ui/react';
 import { FaSearch, FaTimes } from 'react-icons/fa';
 import Layout from '../components/Layout';
@@ -85,10 +86,10 @@ const Discover = ({ query, setQuery, queried, setQueried }) => {
 						</Container>
 					</HStack>
 				) : isError ? (
-					<div role='alert'>
+					<Box role='alert'>
 						<p>Something went wrong:</p>
-						<pre>{error.message}</pre>
-					</div>
+						<p>{error.message}</p>
+					</Box>
 				) : (
 					<Text> Try to search a book...</Text>
 				)}
