@@ -1,12 +1,21 @@
 import React from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { Route, Switch } from 'react-router';
-import Discover from './screens/Discover';
-import Home from './screens/Home';
+import DiscoverFallback from './components/DiscoverFallback';
+import HomeFallback from './components/HomeFallback';
+import ShowBookFallback from './components/ShowBookFallback';
 import Profile from './screens/Profile';
-import ShowBook from './screens/ShowBook';
-// import { useColorMode } from '@chakra-ui/react';
 const user = { name: 'Mehmed Al Fatih', imageProfile: '' };
+
+const Discover = React.lazy(() =>
+	import(/* webpackPrefetch: true */ './screens/Discover')
+);
+const Home = React.lazy(() =>
+	import(/* webpackPrefetch: true */ './screens/Home')
+);
+const ShowBook = React.lazy(() =>
+	import(/* webpackPrefetch: true */ './screens/ShowBook')
+);
 
 function ErrorFallback({ error, resetErrorBoundary }) {
 	return (
@@ -34,17 +43,41 @@ const AppRoutes = () => {
 	const searchProps = { query, setQuery, queried, setQueried };
 	return (
 		<Switch>
-			<Route exact path='/' render={() => <Home user={user} />} />
-			<Route exact path='/books' render={() => <Discover {...searchProps} />} />
+			<Route
+				exact
+				path='/'
+				render={() => (
+					<React.Suspense fallback={<HomeFallback />}>
+						<Home user={user} />
+					</React.Suspense>
+				)}
+			/>
+			<Route
+				exact
+				path='/books'
+				render={() => (
+					<React.Suspense fallback={<DiscoverFallback />}>
+						<Discover {...searchProps} />
+					</React.Suspense>
+				)}
+			/>
 			<Route
 				exact
 				path='/books/:bookId'
-				render={() => <ShowBook {...searchProps} />}
+				render={() => (
+					<React.Suspense fallback={<ShowBookFallback />}>
+						<ShowBook {...searchProps} />
+					</React.Suspense>
+				)}
 			/>
 			<Route
 				exact
 				path='/profile/:profileId'
-				render={() => <Profile user={user} />}
+				render={() => (
+					<React.Suspense fallback={<div>Loading Profile...</div>}>
+						<Profile user={user} />
+					</React.Suspense>
+				)}
 			/>
 		</Switch>
 	);
