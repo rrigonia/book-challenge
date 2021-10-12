@@ -20,7 +20,7 @@ const config = {
 	initialColorMode: 'light',
 	useSystemColorMode: false,
 	fonts: {
-		body: 'SF Pro Display'
+		body: 'SF Pro Display, Helvetica, sans-serif'
 	}
 };
 // 3. extend the theme

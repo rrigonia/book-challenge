@@ -1,5 +1,5 @@
 import React from 'react';
-import { Flex, Box, Heading, Text, Image } from '@chakra-ui/react';
+import { Flex, Box, Heading, Text } from '@chakra-ui/react';
 import {
 	HomeSection,
 	DiscoverBookCard,
@@ -12,6 +12,8 @@ import Footer from '../components/Footer';
 import { BgOvalsHome } from '../components/lib';
 import { useBooks } from '../utils/books';
 import bitmap from '../assets/Bitmap.png';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 const randomWord = 'Rock and Roll';
 
@@ -67,7 +69,7 @@ const Home = ({ user }) => {
 				link='All videos'
 			>
 				<Flex h='182px'>
-					<Image src={bitmap} />
+					<LazyLoadImage src={bitmap} />
 				</Flex>
 			</HomeSection>
 			<Footer />

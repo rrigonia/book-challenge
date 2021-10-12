@@ -43,11 +43,11 @@ function BookInfo ({ book, showError, error, isLoading, ...props }) {
 				spacing='20px'
 				mt='10px'
 				alignItems='flex-start'
-				pb='20px'
+				pb='50px'
 				letterSpacing='0.2px'
 				textColor='rgba(49,49,49,0.6)'
 				w='full'
-				h='235px'
+				h='27vh'
 				overflow='auto'
 				{...props}
 			>
@@ -60,7 +60,7 @@ function BookInfo ({ book, showError, error, isLoading, ...props }) {
 						<FaTimes color='red' /> <Text px={2}>{error.message}</Text>
 					</Flex>
 				) : description ? (
-					<Text>{description}</Text>
+					<Text pb='20px'>{description}</Text>
 				) : (
 					<Flex alignItems='center' mt={15}>
 						<FaTimes color='red'/> <Text px={2}>This book do not contain any description!</Text>

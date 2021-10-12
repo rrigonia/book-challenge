@@ -54,6 +54,7 @@ function BgOvals() {
 			<Oval />
 			<Oval
 				style={{
+					position: 'fixed',
 					width: 63,
 					height: 63,
 					left: '19.5%',
@@ -64,6 +65,7 @@ function BgOvals() {
 			/>
 			<Oval
 				style={{
+					position: 'fixed',
 					width: 48,
 					height: 48,
 					left: '60%',
@@ -75,6 +77,7 @@ function BgOvals() {
 			/>
 			<Oval
 				style={{
+					position: 'fixed',
 					width: 100,
 					height: 100,
 					left: '87%',
@@ -86,6 +89,7 @@ function BgOvals() {
 			/>
 			<Oval
 				style={{
+					position: 'fixed',
 					width: 15,
 					height: 15,
 					left: '12%',

@@ -2,16 +2,13 @@ import React from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { Route, Switch } from 'react-router';
 import DiscoverFallback from './components/DiscoverFallback';
-import HomeFallback from './components/HomeFallback';
 import ShowBookFallback from './components/ShowBookFallback';
 import Profile from './screens/Profile';
+import Home from './screens/Home';
 const user = { name: 'Mehmed Al Fatih', imageProfile: '' };
 
 const Discover = React.lazy(() =>
 	import(/* webpackPrefetch: true */ './screens/Discover')
-);
-const Home = React.lazy(() =>
-	import(/* webpackPrefetch: true */ './screens/Home')
 );
 const ShowBook = React.lazy(() =>
 	import(/* webpackPrefetch: true */ './screens/ShowBook')
@@ -43,15 +40,7 @@ const AppRoutes = () => {
 	const searchProps = { query, setQuery, queried, setQueried };
 	return (
 		<Switch>
-			<Route
-				exact
-				path='/'
-				render={() => (
-					<React.Suspense fallback={<HomeFallback />}>
-						<Home user={user} />
-					</React.Suspense>
-				)}
-			/>
+			<Route exact path='/' render={() => <Home user={user} />} />
 			<Route
 				exact
 				path='/books'
