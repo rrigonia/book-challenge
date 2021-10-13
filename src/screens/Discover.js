@@ -27,7 +27,7 @@ const Discover = ({ query, setQuery, queried, setQueried }) => {
 
 	const handleSubmit = e => {
 		e.preventDefault();
-		setQuery(e.target.elements.search.value.replace(' ', '&'));
+		setQuery(e.target.elements.search.value);
 		setQueried(true);
 	};
 

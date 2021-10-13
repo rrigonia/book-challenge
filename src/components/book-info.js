@@ -8,14 +8,45 @@ import {
 	Stack,
 	Container,
 	Spinner,
-	Flex
+	Flex,
+	Button
 } from '@chakra-ui/react';
 import { FaTimes } from 'react-icons/fa';
 import { FiBookOpen, FiShare } from 'react-icons/fi';
 import { BiHeadphone } from 'react-icons/bi';
+import { useHistory } from 'react-router';
 
-function BookInfo ({ book, showError, error, isLoading, ...props }) {
+function BookInfo({ book, showError, error, isLoading, ...props }) {
 	const { title, subTitle, authors, description } = book;
+	const history = useHistory();
+
+	if (showError) {
+		return (
+			<React.Fragment>
+				<Stack mt='67px' textAlign='center' {...props} w='full' h='full'>
+					<Heading fontSize='min(3vh, 8vw)' fontWeight='700'>
+						{error.message} :(
+					</Heading>
+					<Flex
+						justifyContent='center'
+						alignItems='center'
+						pt='min(2.5vh, 7vw)'
+					>
+						<Button
+							colorScheme='gray'
+							bg='gray.300'
+							fontSize='min(2.5vh, 7vw)'
+							p={5}
+							onClick={() => history.push('/books')}
+						>
+							Search
+						</Button>
+					</Flex>
+				</Stack>
+			</React.Fragment>
+		);
+	}
+
 	return (
 		<React.Fragment>
 			<Stack mt='67px' {...props} w='full'>
@@ -42,7 +73,7 @@ function BookInfo ({ book, showError, error, isLoading, ...props }) {
 				fontSize='min(2vh, 7vw)'
 				lineHeight='25px'
 				spacing='20px'
-				mt={['10px', '25px']}
+				mt={[ '10px', '25px' ]}
 				alignItems='flex-start'
 				pb='50px'
 				letterSpacing='0.2px'
@@ -56,24 +87,21 @@ function BookInfo ({ book, showError, error, isLoading, ...props }) {
 					<Container centerContent>
 						<Spinner size='md' />
 					</Container>
-				) : showError ? (
-					<Flex alignItems='center' mt={15}>
-						<FaTimes color='red' /> <Text px={2}>{error.message}</Text>
-					</Flex>
 				) : description ? (
 					<Text pb='20px'>{description}</Text>
 				) : (
 					<Flex alignItems='center' mt={15}>
-						<FaTimes color='red'/> <Text px={2}>This book do not contain any description!</Text>
+						<FaTimes color='red' />{' '}
+						<Text px={2}>This book do not contain any description!</Text>
 					</Flex>
 				)}
 			</VStack>
 		</React.Fragment>
 	);
-};
-BookInfo = React.memo(BookInfo)
+}
+BookInfo = React.memo(BookInfo);
 
-function BookActions () {
+function BookActions() {
 	return (
 		<HStack
 			w='335px'
@@ -98,8 +126,7 @@ function BookActions () {
 			</HStack>
 		</HStack>
 	);
-};
-BookActions = React.memo(BookActions)
+}
+BookActions = React.memo(BookActions);
 
-export {BookInfo, BookActions}
-
+export { BookInfo, BookActions };

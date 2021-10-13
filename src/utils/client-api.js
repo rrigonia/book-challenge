@@ -1,4 +1,4 @@
-const baseUrl = 'https://www.googleapis.com/books/v1/volumes?q=';
+const baseUrl = process.env.REACT_APP_API_URL;
 const max = 20;
 
 const client = async (
@@ -8,6 +8,7 @@ const client = async (
 ) => {
 	const config = {
 		method: data ? 'POST' : 'GET',
+		body: data ? JSON.stringify(data) : undefined,
 		headers: {
 			'Content-Type': data ? 'application/json' : undefined,
 			...customHeaders
@@ -16,7 +17,9 @@ const client = async (
 	};
 
 	return fetch(
-		`${baseUrl}${endpoint}&printType=books&maxResults=${max}&startIndex=${startIndex}`,
+		`${baseUrl}?q=${encodeURIComponent(
+			endpoint
+		)}&printType=books&maxResults=${max}&startIndex=${startIndex}`,
 		config
 	).then(async res => {
 		// if(res.status === '404'){

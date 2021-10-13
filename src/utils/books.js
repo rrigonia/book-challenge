@@ -14,6 +14,19 @@ const loadingBook = {
 	}
 };
 
+const notFoundBook = {
+	volumeInfo: {
+		title: 'Not Found',
+		subtitle: '',
+		authors: [ '' ],
+		averageRating: '...',
+		description: 'Try to search another book',
+		imageLinks: {
+			thumbnail: bookPlaceholder
+		}
+	}
+};
+
 
 const loadingBooks = Array.from({ length: 10 }).map((book, idx) => ({
 	id: `loading-book-${idx}`,
@@ -24,7 +37,12 @@ function useBook(id) {
 	const newQuery = useQuery([ 'books', id ], () =>
 		client(id)
 	);
-    const book = newQuery.data?.items.find(bk => bk.id === id) ?? loadingBook;
+    let book = newQuery.data?.items?.find(bk => bk.id === id) ?? loadingBook;
+	// case didn`t find any book, throw manually the error
+	if(newQuery.isSuccess && book === loadingBook){
+		newQuery.isError = true;
+		newQuery.error =  {message: 'Book Not Found'}
+	}
 	const image = book.volumeInfo.imageLinks?.thumbnail ?? book.volumeInfo.imageLinks?.smallThumbnail ?? bookPlaceholder;
 
     return {...newQuery, data: book, image}
