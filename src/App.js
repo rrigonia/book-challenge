@@ -3,7 +3,6 @@ import { ErrorBoundary } from 'react-error-boundary';
 import { Route, Switch } from 'react-router';
 import DiscoverFallback from './components/DiscoverFallback';
 import ShowBookFallback from './components/ShowBookFallback';
-import Layout from './components/Layout';
 import Profile from './screens/Profile';
 import Home from './screens/Home';
 import NotFound404 from './components/NotFound404';

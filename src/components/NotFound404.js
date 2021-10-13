@@ -4,7 +4,6 @@ import Layout from './Layout';
 import { BgOvals } from './lib';
 import { useHistory } from 'react-router';
 import image from '../assets/error-404.png';
-import Footer from './Footer';
 
 const NotFound404 = () => {
 	const history = useHistory();
