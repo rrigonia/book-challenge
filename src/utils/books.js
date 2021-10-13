@@ -14,18 +14,7 @@ const loadingBook = {
 	}
 };
 
-const notFoundBook = {
-	volumeInfo: {
-		title: 'Not Found',
-		subtitle: '',
-		authors: [ '' ],
-		averageRating: '...',
-		description: 'Try to search another book',
-		imageLinks: {
-			thumbnail: bookPlaceholder
-		}
-	}
-};
+
 
 
 const loadingBooks = Array.from({ length: 10 }).map((book, idx) => ({

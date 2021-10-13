@@ -106,6 +106,7 @@ const DiscoverBookCard = ({ volumeInfo, loading, id, idx }) => {
 				overflow='hidden'
 				px='20px'
 				py='15px'
+				data-testid={`discover-${idx}`}
 			>
 				<VStack
 					alignItems='flex-start'
@@ -115,7 +116,7 @@ const DiscoverBookCard = ({ volumeInfo, loading, id, idx }) => {
 					textColor='#FEFEFE'
 				>
 					<Flex h='36px' alignItems='center'>
-						<Text fontSize='2xl' fontWeight='bold'>
+						<Text fontSize='2xl' fontWeight='bold' data-testid={`discover-title-${idx}`}>
 							{title.substring(0, 7)}..
 						</Text>
 					</Flex>

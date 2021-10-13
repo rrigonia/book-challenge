@@ -55,7 +55,7 @@ const ShowBook = () => {
 				showError={isError}
 				error={error}
 			/>
-			<BookActions />
+			{isError || isLoading ? null : <BookActions />}
 		</Layout>
 	);
 };

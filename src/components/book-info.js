@@ -17,7 +17,7 @@ import { BiHeadphone } from 'react-icons/bi';
 import { useHistory } from 'react-router';
 
 function BookInfo({ book, showError, error, isLoading, ...props }) {
-	const { title, subTitle, authors, description } = book;
+	const { title, subtitle, authors, description } = book;
 	const history = useHistory();
 
 	if (showError) {
@@ -52,7 +52,7 @@ function BookInfo({ book, showError, error, isLoading, ...props }) {
 			<Stack mt='67px' {...props} w='full'>
 				<Heading fontSize='min(3vh, 8vw)' fontWeight='400'>
 					<span style={{ fontWeight: '700' }}>{title}</span>{' '}
-					{subTitle ? `:${subTitle}` : null}
+					{subtitle ? ': ' : null } {subtitle ? <span>{subtitle}</span> : null}
 				</Heading>
 				<Text
 					minH='19px'
