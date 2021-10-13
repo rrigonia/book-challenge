@@ -19,13 +19,14 @@ function BookInfo ({ book, showError, error, isLoading, ...props }) {
 	return (
 		<React.Fragment>
 			<Stack mt='67px' {...props} w='full'>
-				<Heading fontSize='xl' fontWeight='400'>
+				<Heading fontSize='min(3vh, 8vw)' fontWeight='400'>
 					<span style={{ fontWeight: '700' }}>{title}</span>{' '}
 					{subTitle ? `:${subTitle}` : null}
 				</Heading>
 				<Text
 					minH='19px'
 					textColor='brand.seccondary'
+					fontSize='min(2.5vh, 7vw)'
 					letterSpacing='0.670588px'
 				>
 					{authors?.map((author, idx) => (
@@ -38,10 +39,10 @@ function BookInfo ({ book, showError, error, isLoading, ...props }) {
 				</Text>
 			</Stack>
 			<VStack
-				fontSize='md'
+				fontSize='min(2vh, 7vw)'
 				lineHeight='25px'
 				spacing='20px'
-				mt='10px'
+				mt={['10px', '25px']}
 				alignItems='flex-start'
 				pb='50px'
 				letterSpacing='0.2px'

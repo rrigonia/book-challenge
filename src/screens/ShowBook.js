@@ -33,14 +33,14 @@ const ShowBook = () => {
 			<Flex
 				w='full'
 				justifyContent='center'
-				h='282px'
+				h='35vh' //35%
 				borderRadius='0px 0px 100px 0px'
 				bg='#FFF6E5'
 			>
 				<Image
 					src={image}
-					maxW='151px'
-					h='234px'
+					maxW='40vw'
+					h='28vh'
 					mt='84px'
 					zIndex='2'
 					borderRadius='5px'
